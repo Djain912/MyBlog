@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: 'https://codeitupblogs.netlify.app/', // Update this to your frontend URL after deployment
+  origin: 'https://codeitupblogs.netlify.app', // Update this to your frontend URL after deployment
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 200 // For legacy browser support
