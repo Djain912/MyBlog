@@ -1,38 +1,37 @@
-import express from "express";
-import router from "./router/auth.js";
-import db from "./utils/db.js";
-import dotenv from "dotenv";
-import bodyParser from "body-parser";
+import express from 'express';
+import router from './router/auth.js';
+import db from './utils/db.js';
+import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+
 dotenv.config();
 
-import cors from "cors";
 const app = express();
-var corsOptions = {
-    origin: 'http://localhost:5173',
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
 
-  app.use(cors(corsOptions));
-  app.use(bodyParser.json({ limit: '50mb' })); // Adjust '50mb' as per your requirement
-  app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+const corsOptions = {
+  origin: 'http://localhost:5173', // Update this to your frontend URL after deployment
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 200 // For legacy browser support
+};
 
-
+app.use(cors(corsOptions));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(express.json());
-app.use("/", router);
 
+app.use('/', router);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 9000;
 
-db().then(()=>{
-    //listening
-    app.listen(9000, () => {
-        console.log(`DB Connected & Server is running on port ${9000}`);
-    })
-}).catch((err)=>{
-    console.log(err);
-})
+db()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`DB Connected & Server is running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Failed to connect to the database:', err);
+    process.exit(1); // Exit the process with failure
+  });
