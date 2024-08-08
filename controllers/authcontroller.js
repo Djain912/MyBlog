@@ -78,7 +78,7 @@ const post = async (req, res) => {
     const newPost = await Post.create({ title, subtitle, description, category, image });
 
     // Construct the blog URL
-    const blogUrl = `http://localhost:5173/post/${newPost._id}`;
+    const blogUrl = `https://codeitupblogs.netlify.app/post/${newPost._id}`;
 
     // Send email notifications asynchronously
     setImmediate(() => {
