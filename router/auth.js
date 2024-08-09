@@ -3,7 +3,6 @@ import express from "express";
 const router = express.Router();
 import {contact,post,getposts,getrecentposts,getidpost,subscribe,getcontacts,delcontact,
     getPosts,getPostById,updatePost,deletePost,totalcontacts,totalpost
-    ,rate
 } from "../controllers/authcontroller.js";
 
 import login from "../controllers/logincontroller.js";
@@ -29,6 +28,5 @@ router.route("/totalcontacts").get(totalcontacts);
 
 router.route("/login").post(login);
 
-router.route("/rate/:postId").post(rate);
 
 export default router;

@@ -287,31 +287,7 @@ const totalcontacts = async (req, res) => {
   }
 }
 
-const rate = async (req, res) => {
-  const { postId } = req.params;
-  const { rating } = req.body;
 
-  try {
-    const post = await Post.findById(postId);
-
-    if (!post) {
-      return res.status(404).json({ error: 'Post not found' });
-    }
-
-    // Add the new rating
-    post.ratings.push({ rating });
-
-    // Recalculate the average rating
-    const totalRatings = post.ratings.reduce((acc, r) => acc + r.rating, 0);
-    post.averageRating = totalRatings / post.ratings.length;
-
-    await post.save();
-
-    res.json({ message: 'Rating submitted successfully', averageRating: post.averageRating });
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to submit rating' });
-  }
-}
 export { contact, post, getposts,getrecentposts, getidpost,subscribe,getcontacts,delcontact,getPosts, getPostById, updatePost, deletePost,
-  totalpost,totalcontacts,rate
+  totalpost,totalcontacts
  };
