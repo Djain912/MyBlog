@@ -28,9 +28,9 @@ router.route("/totalcontacts").get(totalcontacts);
 
 router.route("/login").post(login);
 
-app.get('/health', (req, res) => {
-    res.status(200).send('OK');
-  });
+router.route("/health").get((req, res) => {
+  res.sendStatus(200);
+})
   
 
 
