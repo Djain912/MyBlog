@@ -53,7 +53,7 @@ const sendEmailNotifications = async (title, subtitle, url) => {
 
     for (let subscriber of subscribers) {
       let mailOptions = {
-        from: '"Your Blog" <your-email@example.com>',
+        from: '"CodeItUp | Darshan Jain" <https://codeitupblogs.netlify.app/>',
         to: subscriber.email,
         subject: 'New Blog Post Published!',
         text: `A new blog post has been published.\n\nTitle: ${title}\nSubtitle: ${subtitle}\nRead more at: ${url}`,
