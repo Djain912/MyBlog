@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 app.use('/', router);
 
-const PORT = process.env.PORT || 8989;
+const PORT = process.env.PORT || 30007;
 
 db()
   .then(() => {
